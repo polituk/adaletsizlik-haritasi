@@ -233,6 +233,49 @@ document.addEventListener('DOMContentLoaded', function() {
     // Start the application
     init();
     
+    // Dark mode toggle functionality
+    function initDarkMode() {
+        const themeToggleBtn = document.getElementById('theme-toggle-btn');
+        const body = document.body;
+        
+        // Check for saved theme preference or default to light mode
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        body.setAttribute('data-theme', savedTheme);
+        
+        // Theme toggle event listener
+        themeToggleBtn.addEventListener('click', function() {
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            // Optional: Update map colors if needed for better visibility in dark mode
+            updateMapForTheme(newTheme);
+        });
+    }
+    
+    function updateMapForTheme(theme) {
+        // Update SVG province strokes for better visibility in dark mode
+        const provinces = document.querySelectorAll('.province');
+        provinces.forEach(province => {
+            if (theme === 'dark') {
+                // Ensure province borders are visible in dark mode
+                if (province.style.stroke === '' || province.style.stroke === '#fff') {
+                    province.style.stroke = '#555';
+                }
+            } else {
+                // Reset to default light mode stroke
+                if (province.style.stroke === '#555') {
+                    province.style.stroke = '#fff';
+                }
+            }
+        });
+    }
+    
+    // Initialize dark mode
+    initDarkMode();
+    
     // Add hover effects and tooltips
     const style = document.createElement('style');
     style.textContent = `

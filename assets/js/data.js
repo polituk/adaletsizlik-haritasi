@@ -660,13 +660,13 @@ const partyInfo = {
     "dem": { name: "DEM", fullname: "Halkların Eşitlik ve Demokrasi Partisi", color: "#9b59b6" },
     "yrp": { name: "YRP", fullname: "Yeniden Refah Partisi", color: "#21841f" },
     "bbp": { name: "BBP", fullname: "Büyük Birlik Partisi", color: "#7d3b34" },
-    "independent": { name: "Bağımsız", fullname: "Bağımsız", color: "#95a5a6" }
+    // "independent": { name: "Bağımsız", fullname: "Bağımsız", color: "#95a5a6" }
 };
 
 // Status information
 const statusInfo = {
-    "normal": { name: "Normal", description: "Belediye başkanı görevde", color: "#2ecc71" },
-    "arrested": { name: "Tutuklu", description: "Belediye başkanı tutuklu durumda", color: "#e74c3c" },
-    "detained": { name: "Gözaltında", description: "Belediye başkanı gözaltında", color: "#f39c12" },
-    "trustee": { name: "Kayyum", description: "Belediyeye kayyum atanmış", color: "#8e44ad"}
+    "normal": { name: "Normal", description: "Belediye başkanı görevde", color: "#e0301d" },
+    "arrested": { name: "Tutuklu", description: "Belediye başkanı tutuklu durumda", color: "#1de04e" },
+    "detained": { name: "Gözaltında", description: "Belediye başkanı gözaltında", color: "#e07b1d" },
+    "trustee": { name: "Kayyum", description: "Belediyeye kayyum atanmış", color: "#872ac9"}
 };
