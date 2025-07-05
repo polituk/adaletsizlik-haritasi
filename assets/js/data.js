@@ -665,8 +665,8 @@ const partyInfo = {
 
 // Status information
 const statusInfo = {
-    "normal": { name: "Normal", description: "Belediye başkanı görevde", color: "#95a5a6" },
-    "arrested": { name: "Tutuklu", description: "Belediye başkanı tutuklu durumda", color: "#ed0b03" },
-    "trustee": { name: "Kayyum", description: "Belediyeye kayyum atanmış", color: "#fa9023" },
-    "detained": { name: "Gözaltında", description: "Belediye başkanı gözaltında", color: "#fed400" },
+    "normal": { name: "Görevde", description: "Belediye başkanı görevde", color: "#95a5a6", details: "belediye başkanı görevde."},
+    "arrested": { name: "Tutuklu", description: "Belediye başkanı tutuklu durumda", color: "#ed0b03", details: "belediye başkanı tutuklu." },
+    "trustee": { name: "Kayyum", description: "Belediyeye kayyum atanmış", color: "#fa9023", details: "belediyesine kayyum atanmış." },
+    "detained": { name: "Gözaltında", description: "Belediye başkanı gözaltında", color: "#fed400", details: "belediye başkanı gözaltında." },
 };

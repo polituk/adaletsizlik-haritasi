@@ -213,7 +213,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="party-info">
                 <h3>Belediye Başkanı</h3>
                 <p><strong>İsim:</strong> ${data.mayor}</p>
-                <p><strong>Parti:</strong> ${party.name}</p>
+                <p><strong>Parti:</strong> ${party.fullname} (${party.name})</p>
                 <div class="color-box" style="display: inline-block; margin-right: 10px; background-color: ${party.color};"></div>
             </div>
             
@@ -263,66 +263,44 @@ document.addEventListener('DOMContentLoaded', function() {
         };
     }
 
+    // Helper function to generate status card HTML
+    function generateStatusCard(statusKey, statusData, percentage, population) {
+        return `
+            <div style="margin: 15px 0; padding: 10px; background: var(--legend-bg); border-radius: 8px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <span class="status-badge status-${statusKey}" style="margin-right: 8px;">${statusData.name}</span>
+                    <strong>${percentage}%</strong>
+                </div>
+                <div style="width: 100%; background-color: var(--border-color); border-radius: 4px; height: 6px; margin-bottom: 8px; overflow: hidden;">
+                    <div style="height: 100%; background-color: ${statusData.color}; width: ${percentage}%; transition: width 0.3s ease; border-radius: 4px;"></div>
+                </div>
+                <div style="font-size: 0.9em; color: var(--subtext-color);">
+                    ${formatNumber(population)} kişinin ${statusData.details}
+                </div>
+            </div>
+        `;
+    }
+
     // Show population statistics card
     function showPopulationStats() {
         const stats = calculatePopulationStats();
+        
+        // Generate status cards dynamically
+        const statusCards = Object.keys(statusInfo).map(statusKey => {
+            return generateStatusCard(
+                statusKey,
+                statusInfo[statusKey],
+                stats.statusPercentages[statusKey],
+                stats.statusPopulation[statusKey]
+            );
+        }).join('');
         
         statsPanel.innerHTML = `
             <h2>Durumların Nüfusa Dağılımı</h2>
             <p><strong>Toplam Nüfus:</strong> ${formatNumber(stats.totalPopulation)}</p>
             
             <div style="margin-top: 20px;">
-                <div style="margin: 15px 0; padding: 10px; background: var(--legend-bg); border-radius: 8px;">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                        <span class="status-badge status-normal" style="margin-right: 8px;">${statusInfo.normal.name}</span>
-                        <strong>${stats.statusPercentages.normal}%</strong>
-                    </div>
-                    <div style="width: 100%; background-color: var(--border-color); border-radius: 4px; height: 6px; margin-bottom: 8px; overflow: hidden;">
-                        <div style="height: 100%; background-color: ${statusInfo.normal.color}; width: ${stats.statusPercentages.normal}%; transition: width 0.3s ease; border-radius: 4px;"></div>
-                    </div>
-                    <div style="font-size: 0.9em; color: var(--subtext-color);">
-                        ${formatNumber(stats.statusPopulation.normal)} kişi
-                    </div>
-                </div>
-
-                <div style="margin: 15px 0; padding: 10px; background: var(--legend-bg); border-radius: 8px;">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                        <span class="status-badge status-detained" style="margin-right: 8px;">${statusInfo.detained.name}</span>
-                        <strong>${stats.statusPercentages.detained}%</strong>
-                    </div>
-                    <div style="width: 100%; background-color: var(--border-color); border-radius: 4px; height: 6px; margin-bottom: 8px; overflow: hidden;">
-                        <div style="height: 100%; background-color: ${statusInfo.detained.color}; width: ${stats.statusPercentages.detained}%; transition: width 0.3s ease; border-radius: 4px;"></div>
-                    </div>
-                    <div style="font-size: 0.9em; color: var(--subtext-color);">
-                        ${formatNumber(stats.statusPopulation.detained)} kişi
-                    </div>
-                </div>
-
-                <div style="margin: 15px 0; padding: 10px; background: var(--legend-bg); border-radius: 8px;">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                        <span class="status-badge status-arrested" style="margin-right: 8px;">${statusInfo.arrested.name}</span>
-                        <strong>${stats.statusPercentages.arrested}%</strong>
-                    </div>
-                    <div style="width: 100%; background-color: var(--border-color); border-radius: 4px; height: 6px; margin-bottom: 8px; overflow: hidden;">
-                        <div style="height: 100%; background-color: ${statusInfo.arrested.color}; width: ${stats.statusPercentages.arrested}%; transition: width 0.3s ease; border-radius: 4px;"></div>
-                    </div>
-                    <div style="font-size: 0.9em; color: var(--subtext-color);">
-                        ${formatNumber(stats.statusPopulation.arrested)} kişi
-                    </div>
-                </div>
-
-                <div style="margin: 15px 0; padding: 10px; background: var(--legend-bg); border-radius: 8px;">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                        <span class="status-badge status-trustee" style="margin-right: 8px;">${statusInfo.trustee.name}</span>
-                        <strong>${stats.statusPercentages.trustee}%</strong>
-                    </div>
-                    <div style="width: 100%; background-color: var(--border-color); border-radius: 4px; height: 6px; margin-bottom: 8px; overflow: hidden;">
-                        <div style="height: 100%; background-color: ${statusInfo.trustee.color}; width: ${stats.statusPercentages.trustee}%; transition: width 0.3s ease; border-radius: 4px;"></div>
-                    </div>
-                    <div style="font-size: 0.9em; color: var(--subtext-color);">
-                        ${formatNumber(stats.statusPopulation.trustee)} kişi
-                    </div>
-                </div>
+                ${statusCards}
             </div>
             
             <div style="margin-top: 20px; padding: 10px; background: var(--hover-bg); border-radius: 8px; font-size: 0.9em; color: var(--subtext-color);">
