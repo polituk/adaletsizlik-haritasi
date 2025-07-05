@@ -2,6 +2,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     const map = document.getElementById('turkey-map');
     const detailsPanel = document.getElementById('province-details');
+    const statsPanel = document.getElementById('population-stats');
     const legendTitle = document.getElementById('legend-title');
     const legendItems = document.getElementById('legend-items');
     let selectedProvince = null;
@@ -225,6 +226,104 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
     }
 
+    // Calculate and display population statistics by status
+    function calculatePopulationStats() {
+        let totalPopulation = 0;
+        const statusPopulation = {
+            normal: 0,
+            detained: 0,
+            arrested: 0,
+            trustee: 0
+        };
+
+        // Calculate totals
+        Object.values(provincesData).forEach(province => {
+            totalPopulation += province.population;
+            statusPopulation[province.status] += province.population;
+        });
+
+        // Calculate percentages
+        const statusPercentages = {};
+        Object.keys(statusPopulation).forEach(status => {
+            statusPercentages[status] = totalPopulation > 0 ? 
+                ((statusPopulation[status] / totalPopulation) * 100).toFixed(1) : 0;
+        });
+
+        return {
+            totalPopulation,
+            statusPopulation,
+            statusPercentages
+        };
+    }
+
+    // Show population statistics card
+    function showPopulationStats() {
+        const stats = calculatePopulationStats();
+        
+        statsPanel.innerHTML = `
+            <h2>Durumların Nüfusa Dağılımı</h2>
+            <p><strong>Toplam Nüfus:</strong> ${formatNumber(stats.totalPopulation)}</p>
+            
+            <div style="margin-top: 20px;">
+                <div style="margin: 15px 0; padding: 10px; background: var(--legend-bg); border-radius: 8px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                        <span class="status-badge status-normal" style="margin-right: 8px;">${statusInfo.normal.name}</span>
+                        <strong>${stats.statusPercentages.normal}%</strong>
+                    </div>
+                    <div style="width: 100%; background-color: var(--border-color); border-radius: 4px; height: 6px; margin-bottom: 8px; overflow: hidden;">
+                        <div style="height: 100%; background-color: ${statusInfo.normal.color}; width: ${stats.statusPercentages.normal}%; transition: width 0.3s ease; border-radius: 4px;"></div>
+                    </div>
+                    <div style="font-size: 0.9em; color: var(--subtext-color);">
+                        ${formatNumber(stats.statusPopulation.normal)} kişi
+                    </div>
+                </div>
+
+                <div style="margin: 15px 0; padding: 10px; background: var(--legend-bg); border-radius: 8px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                        <span class="status-badge status-detained" style="margin-right: 8px;">${statusInfo.detained.name}</span>
+                        <strong>${stats.statusPercentages.detained}%</strong>
+                    </div>
+                    <div style="width: 100%; background-color: var(--border-color); border-radius: 4px; height: 6px; margin-bottom: 8px; overflow: hidden;">
+                        <div style="height: 100%; background-color: ${statusInfo.detained.color}; width: ${stats.statusPercentages.detained}%; transition: width 0.3s ease; border-radius: 4px;"></div>
+                    </div>
+                    <div style="font-size: 0.9em; color: var(--subtext-color);">
+                        ${formatNumber(stats.statusPopulation.detained)} kişi
+                    </div>
+                </div>
+
+                <div style="margin: 15px 0; padding: 10px; background: var(--legend-bg); border-radius: 8px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                        <span class="status-badge status-arrested" style="margin-right: 8px;">${statusInfo.arrested.name}</span>
+                        <strong>${stats.statusPercentages.arrested}%</strong>
+                    </div>
+                    <div style="width: 100%; background-color: var(--border-color); border-radius: 4px; height: 6px; margin-bottom: 8px; overflow: hidden;">
+                        <div style="height: 100%; background-color: ${statusInfo.arrested.color}; width: ${stats.statusPercentages.arrested}%; transition: width 0.3s ease; border-radius: 4px;"></div>
+                    </div>
+                    <div style="font-size: 0.9em; color: var(--subtext-color);">
+                        ${formatNumber(stats.statusPopulation.arrested)} kişi
+                    </div>
+                </div>
+
+                <div style="margin: 15px 0; padding: 10px; background: var(--legend-bg); border-radius: 8px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                        <span class="status-badge status-trustee" style="margin-right: 8px;">${statusInfo.trustee.name}</span>
+                        <strong>${stats.statusPercentages.trustee}%</strong>
+                    </div>
+                    <div style="width: 100%; background-color: var(--border-color); border-radius: 4px; height: 6px; margin-bottom: 8px; overflow: hidden;">
+                        <div style="height: 100%; background-color: ${statusInfo.trustee.color}; width: ${stats.statusPercentages.trustee}%; transition: width 0.3s ease; border-radius: 4px;"></div>
+                    </div>
+                    <div style="font-size: 0.9em; color: var(--subtext-color);">
+                        ${formatNumber(stats.statusPopulation.trustee)} kişi
+                    </div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 20px; padding: 10px; background: var(--hover-bg); border-radius: 8px; font-size: 0.9em; color: var(--subtext-color);">
+                <strong>Not:</strong> İstatistikler il bazında nüfus verilerine göre hesaplanmıştır.
+            </div>
+        `;
+    }
+
     // Utility function to format numbers with commas
     function formatNumber(num) {
         if (num === 0 || !num) return '0';
@@ -269,6 +368,9 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Show initial message
         showDefaultDetailsView();
+        
+        // Show population statistics in the stats panel
+        showPopulationStats();
     }
 
     // Fix SVG text elements to not block mouse events
@@ -324,6 +426,9 @@ document.addEventListener('DOMContentLoaded', function() {
         // Set initial logo based on current theme
         setThemeLogo();
     }
+
+    // Make showPopulationStats globally accessible
+    window.showPopulationStats = showPopulationStats;
 
     // Start the application
     init();

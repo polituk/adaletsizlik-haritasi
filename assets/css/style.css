@@ -272,6 +272,15 @@ body {
     position: sticky;
     top: 20px;
     transition: background-color 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.stats-panel {
+    background: var(--card-bg);
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 2px 10px var(--shadow);
+    transition: background-color 0.3s ease;
 }
 
 .details-panel h2 {
@@ -374,7 +383,7 @@ body {
     
     .main-content {
         grid-template-columns: 1fr;
-        grid-template-rows: auto auto;
+        grid-template-rows: auto auto auto;
         gap: 20px;
     }
     
@@ -385,6 +394,11 @@ body {
     .details-panel {
         order: 2;
         position: static;
+        margin-bottom: 10px;
+    }
+    
+    .stats-panel {
+        order: 3;
     }
     
     .legend-items {
