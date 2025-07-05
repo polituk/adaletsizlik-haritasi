@@ -653,8 +653,8 @@ const provincesData = {
 
 // Party colors and names
 const partyInfo = {
-    "akp": { name: "AKP", fullname: "Adalet ve Kalkınma Partisi", color: "#ff6600" },
-    "chp": { name: "CHP", fullname: "Cumhuriyet Halk Partisi", color: "#f71c3c" },
+    "akp": { name: "AKP", fullname: "Adalet ve Kalkınma Partisi", color: "#fc8403" },
+    "chp": { name: "CHP", fullname: "Cumhuriyet Halk Partisi", color: "#e9141d" },
     "mhp": { name: "MHP", fullname: "Milliyetçi Hareket Partisi", color: "#26389e" },
     "iyi-parti": { name: "İYİP", fullname: "İYİ Parti", color: "#3498db" },
     "dem": { name: "DEM", fullname: "Halkların Eşitlik ve Demokrasi Partisi", color: "#9b59b6" },

@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Add event listeners and styling to provinces
         const provinces = map.querySelectorAll('g[id]');
-        console.log(`Found ${provinces.length} provinces in SVG`);
         
         provinces.forEach(provinceElement => {
             const provinceId = provinceElement.id;
@@ -25,8 +24,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     shapeElement.setAttribute('data-province', provinceId);
                     
                     // Apply the fill color directly from partyInfo
-                    const partyColor = partyInfo[data.party]?.color || '#95a5a6';
-                    shapeElement.setAttribute('fill', partyColor);
+                    const partyColor = partyInfo[data.party]?.color || '#ecf0f1';
+                    shapeElement.style.setProperty('fill', partyColor, 'important');
                     
                     // Add click event
                     shapeElement.addEventListener('click', () => selectProvince(provinceId));
@@ -46,6 +45,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             } else {
                 console.log(`No data found for province ID: ${provinceId}`);
+            }
+        });
+    }
+
+    // Apply colors to legend
+    function applyLegendColors() {
+        Object.keys(partyInfo).forEach(partyKey => {
+            const legendColorBox = document.querySelector(`.legend .color-box.${partyKey}`);
+            if (legendColorBox) {
+                legendColorBox.style.backgroundColor = partyInfo[partyKey].color;
             }
         });
     }
@@ -91,7 +100,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <h3>Belediye Başkanı</h3>
                 <p><strong>İsim:</strong> ${data.mayor}</p>
                 <p><strong>Parti:</strong> ${party.name}</p>
-                <div class="color-box ${data.party}" style="display: inline-block; margin-right: 10px;"></div>
+                <div class="color-box" style="display: inline-block; margin-right: 10px; background-color: ${party.color};"></div>
             </div>
             
             <h3>Durum</h3>
@@ -106,6 +115,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize the application
     function init() {
         createMap();
+        applyLegendColors();
         
         // Show initial message
         detailsPanel.innerHTML = `
@@ -131,10 +141,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Start the application
     init();
-});
-
-// Add some interactive features
-document.addEventListener('DOMContentLoaded', function() {
+    
     // Add hover effects and tooltips
     const style = document.createElement('style');
     style.textContent = `

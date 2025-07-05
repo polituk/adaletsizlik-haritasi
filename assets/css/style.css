@@ -64,7 +64,7 @@ header p {
     stroke-width: 1;
     transition: all 0.3s ease;
     cursor: pointer;
-    fill: #95a5a6; /* Default gray color before JavaScript applies party colors */
+    fill: #ecf0f1; /* Default fallback color before JavaScript applies party colors */
 }
 
 .province:hover {
@@ -77,16 +77,6 @@ header p {
     stroke: #2c3e50;
     stroke-width: 3;
 }
-
-/* Political party colors */
-.akp { fill: #ff6600; }
-.chp { fill: #e74c3c; }
-.mhp { fill: #34495e; }
-.iyi-parti { fill: #3498db; }
-.dem { fill: #9b59b6; }
-.yrp { fill: #21841f; }
-.bbp { fill: #21841f; }
-.independent { fill: #95a5a6; }
 
 /* Status indicators */
 .status-arrested {
