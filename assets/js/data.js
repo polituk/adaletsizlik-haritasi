@@ -269,7 +269,7 @@ const provincesData = {
         name: "İstanbul",
         party: "chp",
         mayor: "?",
-        status: "detained",
+        status: "arrested",
         population: 0,
         description: ""
     },
@@ -445,7 +445,7 @@ const provincesData = {
         name: "Siirt",
         party: "dem",
         mayor: "?",
-        status: "normal",
+        status: "trustee",
         population: 0,
         description: ""
     },
@@ -493,7 +493,7 @@ const provincesData = {
         name: "Tunceli",
         party: "dem",
         mayor: "?",
-        status: "normal",
+        status: "trustee",
         population: 0,
         description: ""
     },
@@ -517,7 +517,7 @@ const provincesData = {
         name: "Van",
         party: "dem",
         mayor: "?",
-        status: "normal",
+        status: "trustee",
         population: 0,
         description: ""
     },
@@ -660,13 +660,13 @@ const partyInfo = {
     "dem": { name: "DEM", fullname: "Halkların Eşitlik ve Demokrasi Partisi", color: "#9b59b6" },
     "yrp": { name: "YRP", fullname: "Yeniden Refah Partisi", color: "#21841f" },
     "bbp": { name: "BBP", fullname: "Büyük Birlik Partisi", color: "#7d3b34" },
-    // "independent": { name: "Bağımsız", fullname: "Bağımsız", color: "#95a5a6" }
+    // "independent": { name: "Bağımsız", fullname: "Bağımsız", color: "#95a5a6" },
 };
 
 // Status information
 const statusInfo = {
-    "normal": { name: "Normal", description: "Belediye başkanı görevde", color: "#e0301d" },
-    "arrested": { name: "Tutuklu", description: "Belediye başkanı tutuklu durumda", color: "#1de04e" },
-    "detained": { name: "Gözaltında", description: "Belediye başkanı gözaltında", color: "#e07b1d" },
-    "trustee": { name: "Kayyum", description: "Belediyeye kayyum atanmış", color: "#872ac9"}
+    "normal": { name: "Normal", description: "Belediye başkanı görevde", color: "#95a5a6" },
+    "arrested": { name: "Tutuklu", description: "Belediye başkanı tutuklu durumda", color: "#ed0b03" },
+    "trustee": { name: "Kayyum", description: "Belediyeye kayyum atanmış", color: "#fa9023" },
+    "detained": { name: "Gözaltında", description: "Belediye başkanı gözaltında", color: "#fed400" },
 };

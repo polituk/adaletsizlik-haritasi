@@ -49,6 +49,69 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Apply initial colors
         applyMapColors();
+        
+        // Add click handler for empty space to reset selection
+        addEmptySpaceClickHandler();
+    }
+
+    // Add click handler to reset selection when clicking on empty space
+    function addEmptySpaceClickHandler() {
+        map.addEventListener('click', function(event) {
+            // Check if the click was on the map container but not on a province
+            if (event.target === map || (event.target.tagName === 'svg' && !event.target.hasAttribute('data-province'))) {
+                resetSelection();
+            }
+        });
+        
+        // Also add handler to the SVG element itself
+        const svgElement = map.querySelector('svg');
+        if (svgElement) {
+            svgElement.addEventListener('click', function(event) {
+                // Only reset if clicking directly on the SVG background, not on province elements
+                if (event.target === this || event.target.tagName === 'g' && !event.target.querySelector('[data-province]')) {
+                    resetSelection();
+                }
+            });
+        }
+    }
+
+    // Reset selection and show default view
+    function resetSelection() {
+        // Remove previous selection
+        if (selectedProvince) {
+            const prevElement = map.querySelector(`[data-province="${selectedProvince}"]`);
+            if (prevElement) {
+                prevElement.classList.remove('selected');
+                prevElement.style.strokeWidth = '1';
+                prevElement.style.opacity = '1';
+            }
+        }
+        
+        selectedProvince = null;
+        showDefaultDetailsView();
+    }
+
+    // Show default details view
+    function showDefaultDetailsView() {
+        detailsPanel.innerHTML = `
+            <h2>İl Seçiniz</h2>
+            <p>Haritadan bir il seçerek detayları görüntüleyebilirsiniz.</p>
+            <div style="margin-top: 20px;">
+                <h3>Durum Göstergeleri</h3>
+                <div style="margin: 10px 0;">
+                    <span class="status-badge status-normal">${statusInfo.normal.name}</span> - ${statusInfo.normal.description}
+                </div>
+                <div style="margin: 10px 0;">
+                    <span class="status-badge status-arrested">${statusInfo.arrested.name}</span> - ${statusInfo.arrested.description}
+                </div>
+                <div style="margin: 10px 0;">
+                    <span class="status-badge status-detained">${statusInfo.detained.name}</span> - ${statusInfo.detained.description}
+                </div>
+                <div style="margin: 10px 0;">
+                    <span class="status-badge status-trustee">${statusInfo.trustee.name}</span> - ${statusInfo.trustee.description}
+                </div>
+            </div>
+        `;
     }
 
     // Apply colors based on current mode
@@ -200,6 +263,9 @@ document.addEventListener('DOMContentLoaded', function() {
         updateLegend();
         applyStatusBadgeColors();
         
+        // Fix text elements blocking clicks on provinces
+        fixTextElementsPointerEvents();
+        
         // Add tab event listeners
         document.querySelectorAll('.tab-button').forEach(button => {
             button.addEventListener('click', () => {
@@ -209,25 +275,15 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         
         // Show initial message
-        detailsPanel.innerHTML = `
-            <h2>İl Seçiniz</h2>
-            <p>Haritadan bir il seçerek detayları görüntüleyebilirsiniz.</p>
-            <div style="margin-top: 20px;">
-                <h3>Durum Göstergeleri</h3>
-                <div style="margin: 10px 0;">
-                    <span class="status-badge status-normal">${statusInfo.normal.name}</span> - ${statusInfo.normal.description}
-                </div>
-                <div style="margin: 10px 0;">
-                    <span class="status-badge status-arrested">${statusInfo.arrested.name}</span> - ${statusInfo.arrested.description}
-                </div>
-                <div style="margin: 10px 0;">
-                    <span class="status-badge status-detained">${statusInfo.detained.name}</span> - ${statusInfo.detained.description}
-                </div>
-                <div style="margin: 10px 0;">
-                    <span class="status-badge status-trustee">${statusInfo.trustee.name}</span> - ${statusInfo.trustee.description}
-                </div>
-            </div>
-        `;
+        showDefaultDetailsView();
+    }
+
+    // Fix SVG text elements to not block mouse events
+    function fixTextElementsPointerEvents() {
+        const textElements = map.querySelectorAll('text');
+        textElements.forEach(textElement => {
+            textElement.style.pointerEvents = 'none';
+        });
     }
 
     // Start the application
@@ -286,6 +342,12 @@ document.addEventListener('DOMContentLoaded', function() {
         
         .province.selected {
             filter: brightness(1.2);
+        }
+        
+        /* Prevent SVG text elements from blocking mouse events */
+        #turkey-map text {
+            pointer-events: none;
+            user-select: none;
         }
     `;
     document.head.appendChild(style);
