@@ -1,12 +1,12 @@
 // Data for all 81 Turkish provinces
 // This data includes province information, political party, mayor details, and status
 const provincesData = {
-    "1": {
+    "1": { // Adana
         name: "Adana",
         party: "chp",
         mayor: "?",
         status: "detained",
-        population: 0,
+        population: 2270298,
         description: ""
     },
     "2": { // Adıyaman
@@ -14,7 +14,7 @@ const provincesData = {
         party: "chp",
         mayor: "?",
         status: "detained",
-        population: 0,
+        population: 611037,
         description: ""
     },
     "3": { // Afyonkarahisar
@@ -22,7 +22,7 @@ const provincesData = {
         party: "chp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 750193,
         description: ""
     },
     "4": { // Ağrı
@@ -30,7 +30,7 @@ const provincesData = {
         party: "dem",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 499801,
         description: ""
     },
     "5": { // Amasya
@@ -38,7 +38,7 @@ const provincesData = {
         party: "chp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 342378,
         description: ""
     },
     "6": { // Ankara
@@ -46,7 +46,7 @@ const provincesData = {
         party: "chp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 5864049,
         description: ""
     },
     "7": { // Antalya
@@ -54,7 +54,7 @@ const provincesData = {
         party: "chp",
         mayor: "?",
         status: "detained",
-        population: 0,
+        population: 2722103,
         description: ""
     },
     "8": { // Artvin
@@ -62,7 +62,7 @@ const provincesData = {
         party: "chp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 169280,
         description: ""
     },
     "9": { // Aydın
@@ -70,7 +70,7 @@ const provincesData = {
         party: "chp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 1165943,
         description: ""
     },
     "10": { // Balıkesir
@@ -78,7 +78,7 @@ const provincesData = {
         party: "chp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 1276096,
         description: ""
     },
     "11": { // Bilecik
@@ -86,7 +86,7 @@ const provincesData = {
         party: "chp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 228495,
         description: ""
     },
     "12": { // Bingöl
@@ -94,7 +94,7 @@ const provincesData = {
         party: "akp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 283276,
         description: ""
     },
     "13": { // Bitlis
@@ -102,7 +102,7 @@ const provincesData = {
         party: "akp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 359808,
         description: ""
     },
     "14": { // Bolu
@@ -110,7 +110,7 @@ const provincesData = {
         party: "chp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 326409,
         description: ""
     },
     "15": { // Burdur
@@ -118,7 +118,7 @@ const provincesData = {
         party: "chp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 275826,
         description: ""
     },
     "16": { // Bursa
@@ -126,7 +126,7 @@ const provincesData = {
         party: "chp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 3238618,
         description: ""
     },
     "17": { // Çanakkale
@@ -134,7 +134,7 @@ const provincesData = {
         party: "chp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 568966,
         description: ""
     },
     "18": { // Çankırı
@@ -142,7 +142,7 @@ const provincesData = {
         party: "mhp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 199981,
         description: ""
     },
     "19": { // Çorum
@@ -150,7 +150,7 @@ const provincesData = {
         party: "akp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 521335,
         description: ""
     },
     "20": { // Denizli
@@ -158,7 +158,7 @@ const provincesData = {
         party: "chp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 1061371,
         description: ""
     },
     "21": { // Diyarbakır
@@ -166,7 +166,7 @@ const provincesData = {
         party: "dem",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 1833684,
         description: ""
     },
     "22": { // Edirne
@@ -174,7 +174,7 @@ const provincesData = {
         party: "chp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 421247,
         description: ""
     },
     "23": { // Elazığ
@@ -182,7 +182,7 @@ const provincesData = {
         party: "akp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 603941,
         description: ""
     },
     "24": { // Erzincan
@@ -190,7 +190,7 @@ const provincesData = {
         party: "mhp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 241239,
         description: ""
     },
     "25": { // Erzurum
@@ -198,7 +198,7 @@ const provincesData = {
         party: "akp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 745005,
         description: ""
     },
     "26": { // Eskişehir
@@ -206,7 +206,7 @@ const provincesData = {
         party: "chp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 921630,
         description: ""
     },
     "27": { // Gaziantep
@@ -214,7 +214,7 @@ const provincesData = {
         party: "akp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 2193363,
         description: ""
     },
     "28": { // Giresun
@@ -222,7 +222,7 @@ const provincesData = {
         party: "chp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 455922,
         description: ""
     },
     "29": { // Gümüşhane
@@ -230,7 +230,7 @@ const provincesData = {
         party: "mhp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 142617,
         description: ""
     },
     "30": { // Hakkâri
@@ -238,7 +238,7 @@ const provincesData = {
         party: "dem",
         mayor: "?",
         status: "trustee",
-        population: 0,
+        population: 282191,
         description: ""
     },
     "31": { // Hatay
@@ -246,7 +246,7 @@ const provincesData = {
         party: "akp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 1562185,
         description: ""
     },
     "32": { // Isparta
@@ -254,7 +254,7 @@ const provincesData = {
         party: "akp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 446409,
         description: ""
     },
     "33": { // Mersin
@@ -262,7 +262,7 @@ const provincesData = {
         party: "chp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 1954279,
         description: ""
     },
     "34": { // İstanbul
@@ -270,7 +270,7 @@ const provincesData = {
         party: "chp",
         mayor: "?",
         status: "arrested",
-        population: 0,
+        population: 15701602,
         description: ""
     },
     "35": { // İzmir
@@ -278,7 +278,7 @@ const provincesData = {
         party: "chp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 4493242,
         description: ""
     },
     "36": { // Kars
@@ -286,7 +286,7 @@ const provincesData = {
         party: "mhp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 272300,
         description: ""
     },
     "37": { // Kastamonu
@@ -294,7 +294,7 @@ const provincesData = {
         party: "chp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 381991,
         description: ""
     },
     "38": { // Kayseri
@@ -302,7 +302,7 @@ const provincesData = {
         party: "akp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 1452458,
         description: ""
     },
     "39": { // Kırklareli
@@ -310,7 +310,7 @@ const provincesData = {
         party: "mhp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 379031,
         description: ""
     },
     "40": { // Kırşehir
@@ -318,7 +318,7 @@ const provincesData = {
         party: "chp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 244546,
         description: ""
     },
     "41": { // Kocaeli
@@ -326,7 +326,7 @@ const provincesData = {
         party: "akp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 2130006,
         description: ""
     },
     "42": { // Konya
@@ -334,7 +334,7 @@ const provincesData = {
         party: "akp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 2330024,
         description: ""
     },
     "43": { // Kütahya
@@ -342,7 +342,7 @@ const provincesData = {
         party: "chp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 571078,
         description: ""
     },
     "44": { // Malatya
@@ -350,7 +350,7 @@ const provincesData = {
         party: "akp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 750491,
         description: ""
     },
     "45": { // Manisa
@@ -358,7 +358,7 @@ const provincesData = {
         party: "chp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 1475353,
         description: ""
     },
     "46": { // Kahramanmaraş
@@ -366,7 +366,7 @@ const provincesData = {
         party: "akp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 1134105,
         description: ""
     },
     "47": { // Mardin
@@ -374,7 +374,7 @@ const provincesData = {
         party: "dem",
         mayor: "?",
         status: "trustee",
-        population: 0,
+        population: 895911,
         description: ""
     },
     "48": { // Muğla
@@ -382,7 +382,7 @@ const provincesData = {
         party: "chp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 1081867,
         description: ""
     },
     "49": { // Muş
@@ -390,7 +390,7 @@ const provincesData = {
         party: "dem",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 392301,
         description: ""
     },
     "50": { // Nevşehir
@@ -398,7 +398,7 @@ const provincesData = {
         party: "iyi-parti",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 317952,
         description: ""
     },
     "51": { // Niğde
@@ -406,7 +406,7 @@ const provincesData = {
         party: "akp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 372708,
         description: ""
     },
     "52": { // Ordu
@@ -414,7 +414,7 @@ const provincesData = {
         party: "akp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 770711,
         description: ""
     },
     "53": { // Rize
@@ -422,7 +422,7 @@ const provincesData = {
         party: "akp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 346977,
         description: ""
     },
     "54": { // Sakarya
@@ -430,7 +430,7 @@ const provincesData = {
         party: "akp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 1110735,
         description: ""
     },
     "55": { // Samsun
@@ -438,7 +438,7 @@ const provincesData = {
         party: "akp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 1382376,
         description: ""
     },
     "56": { // Siirt
@@ -446,7 +446,7 @@ const provincesData = {
         party: "dem",
         mayor: "?",
         status: "trustee",
-        population: 0,
+        population: 336453,
         description: ""
     },
     "57": { // Sinop
@@ -454,7 +454,7 @@ const provincesData = {
         party: "chp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 226957,
         description: ""
     },
     "58": { // Sivas
@@ -462,7 +462,7 @@ const provincesData = {
         party: "bbp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 637007,
         description: ""
     },
     "59": { // Tekirdağ
@@ -470,7 +470,7 @@ const provincesData = {
         party: "chp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 1187162,
         description: ""
     },
     "60": { // Tokat
@@ -478,7 +478,7 @@ const provincesData = {
         party: "akp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 612674,
         description: ""
     },
     "61": { // Trabzon
@@ -486,7 +486,7 @@ const provincesData = {
         party: "akp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 822270,
         description: ""
     },
     "62": { // Tunceli
@@ -494,7 +494,7 @@ const provincesData = {
         party: "dem",
         mayor: "?",
         status: "trustee",
-        population: 0,
+        population: 86612,
         description: ""
     },
     "63": { // Şanlıurfa
@@ -502,7 +502,7 @@ const provincesData = {
         party: "yrp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 2237745,
         description: ""
     },
     "64": { // Uşak
@@ -510,7 +510,7 @@ const provincesData = {
         party: "chp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 375310,
         description: ""
     },
     "65": { // Van
@@ -518,7 +518,7 @@ const provincesData = {
         party: "dem",
         mayor: "?",
         status: "trustee",
-        population: 0,
+        population: 1118087,
         description: ""
     },
     "66": { // Yozgat
@@ -526,7 +526,7 @@ const provincesData = {
         party: "yrp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 413161,
         description: ""
     },
     "67": { // Zonguldak
@@ -534,7 +534,7 @@ const provincesData = {
         party: "chp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 586802,
         description: ""
     },
     "68": { // Aksaray
@@ -542,7 +542,7 @@ const provincesData = {
         party: "akp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 439474,
         description: ""
     },
     "69": { // Bayburt
@@ -550,7 +550,7 @@ const provincesData = {
         party: "akp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 83676,
         description: ""
     },
     "70": { // Karaman
@@ -558,7 +558,7 @@ const provincesData = {
         party: "mhp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 262791,
         description: ""
     },
     "71": { // Kırıkkale
@@ -566,7 +566,7 @@ const provincesData = {
         party: "chp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 283053,
         description: ""
     },
     "72": { // Batman
@@ -574,7 +574,7 @@ const provincesData = {
         party: "dem",
         mayor: "?",
         status: "trustee",
-        population: 0,
+        population: 654528,
         description: ""
     },
     "73": { // Şırnak
@@ -582,7 +582,7 @@ const provincesData = {
         party: "akp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 570826,
         description: ""
     },
     "74": { // Bartın
@@ -590,7 +590,7 @@ const provincesData = {
         party: "chp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 206715,
         description: ""
     },
     "75": { // Ardahan
@@ -598,7 +598,7 @@ const provincesData = {
         party: "chp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 91354,
         description: ""
     },
     "76": { // Iğdır
@@ -606,7 +606,7 @@ const provincesData = {
         party: "dem",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 206857,
         description: ""
     },
     "77": { // Yalova
@@ -614,7 +614,7 @@ const provincesData = {
         party: "chp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 307882,
         description: ""
     },
     "78": { // Karabük
@@ -622,7 +622,7 @@ const provincesData = {
         party: "akp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 250478,
         description: ""
     },
     "79": { // Kilis
@@ -630,7 +630,7 @@ const provincesData = {
         party: "chp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 156739,
         description: ""
     },
     "80": { // Osmaniye
@@ -638,7 +638,7 @@ const provincesData = {
         party: "mhp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 561061,
         description: ""
     },
     "81": { // Düzce
@@ -646,7 +646,7 @@ const provincesData = {
         party: "akp",
         mayor: "?",
         status: "normal",
-        population: 0,
+        population: 412344,
         description: ""
     }
 };

@@ -97,21 +97,6 @@ document.addEventListener('DOMContentLoaded', function() {
         detailsPanel.innerHTML = `
             <h2>İl Seçiniz</h2>
             <p>Haritadan bir il seçerek detayları görüntüleyebilirsiniz.</p>
-            <div style="margin-top: 20px;">
-                <h3>Durum Göstergeleri</h3>
-                <div style="margin: 10px 0;">
-                    <span class="status-badge status-normal">${statusInfo.normal.name}</span> - ${statusInfo.normal.description}
-                </div>
-                <div style="margin: 10px 0;">
-                    <span class="status-badge status-arrested">${statusInfo.arrested.name}</span> - ${statusInfo.arrested.description}
-                </div>
-                <div style="margin: 10px 0;">
-                    <span class="status-badge status-detained">${statusInfo.detained.name}</span> - ${statusInfo.detained.description}
-                </div>
-                <div style="margin: 10px 0;">
-                    <span class="status-badge status-trustee">${statusInfo.trustee.name}</span> - ${statusInfo.trustee.description}
-                </div>
-            </div>
         `;
     }
 
@@ -222,7 +207,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         detailsPanel.innerHTML = `
             <h2>${data.name}</h2>
-            <p><strong>Nüfus:</strong> ${data.population}</p>
+            <p><strong>Nüfus:</strong> ${formatNumber(data.population)}</p>
             
             <div class="party-info">
                 <h3>Belediye Başkanı</h3>
@@ -238,6 +223,12 @@ document.addEventListener('DOMContentLoaded', function() {
             <h3>Açıklama</h3>
             <p>${data.description}</p>
         `;
+    }
+
+    // Utility function to format numbers with commas
+    function formatNumber(num) {
+        if (num === 0 || !num) return '0';
+        return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     }
 
     // Apply status badge colors
