@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belediye Durumları Haritası</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Belediye Durumları Haritası</h1>
+            <p>Türkiye'nin 81 ili için belediye durumları</p>
+        </header>
+        
+        <main class="main-content">
+            <div class="map-container">
+                <svg id="turkey-map" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid meet">
+                    <!-- Turkey provinces will be loaded here -->
+                </svg>
+                <div class="legend">
+                    <h3>Parti Renkleri</h3>
+                    <div class="legend-item">
+                        <div class="color-box ak-parti"></div>
+                        <span>AK Parti</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="color-box chp"></div>
+                        <span>CHP</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="color-box mhp"></div>
+                        <span>MHP</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="color-box iyi-parti"></div>
+                        <span>İYİ Parti</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="color-box bdp"></div>
+                        <span>DEM Parti</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="color-box independent"></div>
+                        <span>Bağımsız</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="details-panel">
+                <div id="province-details">
+                    <h2>İl Seçiniz</h2>
+                    <p>Haritadan bir il seçerek detayları görüntüleyebilirsiniz.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="assets/js/turkey_map.js"></script>
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
