@@ -206,7 +206,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const party = partyInfo[data.party];
         const status = statusInfo[data.status];
 
-        detailsPanel.innerHTML = `
+        let detailsHTML = `
             <h2>${data.name}</h2>
             <p><strong>Nüfus:</strong> ${formatNumber(data.population)}</p>
             
@@ -220,10 +220,17 @@ document.addEventListener('DOMContentLoaded', function() {
             <h3>Durum</h3>
             <span class="status-badge status-${data.status}">${status.name}</span>
             <p>${status.description}</p>
-            
-            <h3>Açıklama</h3>
-            <p>${data.description}</p>
         `;
+
+        // Only add description section if description is not empty
+        if (data.description && data.description.trim() !== '') {
+            detailsHTML += `
+                <h3>Açıklama</h3>
+                <p>${data.description}</p>
+            `;
+        }
+
+        detailsPanel.innerHTML = detailsHTML;
     }
 
     // Calculate and display population statistics by status
