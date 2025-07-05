@@ -7,3 +7,5 @@ Bu web sitesi, Türkiye'nin 81 ili için belediye durumlarını gösterir. Sadec
 Renkleri dışında, her il için belediye başkanlarının tutuklu, gözaltında veya kayyum atanmış durumda olduğunu gösterir.
 
 Ekranın sağ tarafında ise (mobilde aşağı kısımda) seçilen il hakkında detaylar yazar. Bu yazılar, bir javascript dosyasında tutulur.
+
+Harita, [sozcu.com.tr](https://secim.sozcu.com.tr/secim2024mart31) sitesinden alınmıştır.

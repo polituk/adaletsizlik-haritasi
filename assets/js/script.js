@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Add event listeners and styling to provinces
         const provinces = map.querySelectorAll('g[id]');
+        console.log(`Found ${provinces.length} provinces in SVG`);
+        
         provinces.forEach(provinceElement => {
             const provinceId = provinceElement.id;
             const data = provincesData[provinceId];
@@ -21,6 +23,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     // Apply party colors and status styles
                     shapeElement.setAttribute('class', `province ${data.party} status-${data.status}`);
                     shapeElement.setAttribute('data-province', provinceId);
+                    
+                    // Apply the fill color directly from partyInfo
+                    const partyColor = partyInfo[data.party]?.color || '#95a5a6';
+                    shapeElement.setAttribute('fill', partyColor);
                     
                     // Add click event
                     shapeElement.addEventListener('click', () => selectProvince(provinceId));
@@ -38,6 +44,8 @@ document.addEventListener('DOMContentLoaded', function() {
                         }
                     });
                 }
+            } else {
+                console.log(`No data found for province ID: ${provinceId}`);
             }
         });
     }

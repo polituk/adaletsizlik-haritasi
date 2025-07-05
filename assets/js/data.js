@@ -395,7 +395,7 @@ const provincesData = {
     },
     "50": { // Nevşehir
         name: "Nevşehir",
-        party: "iyip",
+        party: "iyi-parti",
         mayor: "?",
         status: "normal",
         population: 0,
@@ -653,13 +653,14 @@ const provincesData = {
 
 // Party colors and names
 const partyInfo = {
-    "akp": { name: "AKP", color: "#ff6600" },
-    "chp": { name: "CHP", color: "#e74c3c" },
-    "mhp": { name: "MHP", color: "#34495e" },
-    "iyi-parti": { name: "İYİ Parti", color: "#3498db" },
-    "dem": { name: "DEM Parti", color: "#9b59b6" },
-    "yrp": { name: "YRP", color: "#21841f" },
-    "independent": { name: "Bağımsız", color: "#95a5a6" }
+    "akp": { name: "AKP", fullname: "Adalet ve Kalkınma Partisi", color: "#ff6600" },
+    "chp": { name: "CHP", fullname: "Cumhuriyet Halk Partisi", color: "#f71c3c" },
+    "mhp": { name: "MHP", fullname: "Milliyetçi Hareket Partisi", color: "#26389e" },
+    "iyi-parti": { name: "İYİP", fullname: "İYİ Parti", color: "#3498db" },
+    "dem": { name: "DEM", fullname: "Halkların Eşitlik ve Demokrasi Partisi", color: "#9b59b6" },
+    "yrp": { name: "YRP", fullname: "Yeniden Refah Partisi", color: "#21841f" },
+    "bbp": { name: "BBP", fullname: "Büyük Birlik Partisi", color: "#6a2527" },
+    "independent": { name: "Bağımsız", fullname: "Bağımsız", color: "#95a5a6" }
 };
 
 // Status information
