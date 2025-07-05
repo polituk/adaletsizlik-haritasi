@@ -83,6 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (prevElement) {
                 prevElement.classList.remove('selected');
                 prevElement.style.strokeWidth = '1';
+                prevElement.style.stroke = '#fff'; // Reset stroke color to default
                 prevElement.style.opacity = '1';
             }
         }
@@ -193,6 +194,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (prevElement) {
                 prevElement.classList.remove('selected');
                 prevElement.style.strokeWidth = '1';
+                prevElement.style.stroke = '#fff'; // Reset stroke color to default
                 prevElement.style.opacity = '1';
             }
         }
@@ -286,8 +288,55 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Utility function to get current theme colors
+    function getCurrentThemeColor(property) {
+        return getComputedStyle(document.documentElement).getPropertyValue(property).trim();
+    }
+
+    // Logo functionality
+    function initLogo() {
+        const logoImg = document.getElementById('logo-img');
+        
+        // Function to set theme-appropriate logo
+        function setThemeLogo() {
+            const currentTheme = document.body.getAttribute('data-theme') || 'light';
+            const logoPath = currentTheme === 'dark' ? 'assets/images/logo_dark.png' : 'assets/images/logo_light.png';
+            
+            logoImg.src = logoPath;
+            logoImg.style.display = 'block';
+            logoImg.onerror = function() {
+                // If image fails to load, hide it
+                this.style.display = 'none';
+            };
+        }
+        
+        // Function to set logo image (now supports theme switching)
+        window.setLogo = function(lightLogoUrl, darkLogoUrl) {
+            if (lightLogoUrl && lightLogoUrl.trim() !== '') {
+                const currentTheme = document.body.getAttribute('data-theme') || 'light';
+                const logoUrl = currentTheme === 'dark' && darkLogoUrl ? darkLogoUrl : lightLogoUrl;
+                
+                logoImg.src = logoUrl;
+                logoImg.style.display = 'block';
+                logoImg.onerror = function() {
+                    // If image fails to load, hide it
+                    this.style.display = 'none';
+                };
+            } else {
+                logoImg.style.display = 'none';
+            }
+        };
+        
+        // Expose function to update logo based on theme
+        window.updateLogoForTheme = setThemeLogo;
+        
+        // Set initial logo based on current theme
+        setThemeLogo();
+    }
+
     // Start the application
     init();
+    initLogo();
     
     // Dark mode toggle functionality
     function initDarkMode() {
@@ -327,6 +376,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
         });
+        
+        // Update logo for the new theme
+        if (window.updateLogoForTheme) {
+            window.updateLogoForTheme();
+        }
     }
     
     // Initialize dark mode

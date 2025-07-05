@@ -7,28 +7,31 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="header-content">
-                <div class="header-text">
-                    <h1>Türkiye Adaletsizlik Haritası</h1>
-                    <p>Türkiye'nin 81 ili için belediyelere uygulanan adletsiz yaptırımlar</p>
-                </div>
-                <div class="theme-toggle">
-                    <button id="theme-toggle-btn" class="theme-toggle-btn" aria-label="Dark mode geçişi">
-                        <span class="sun-icon">☀️</span>
-                        <span class="moon-icon">🌙</span>
-                    </button>
-                </div>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="" alt="Logo" class="logo-img" id="logo-img">
             </div>
-        </header>
-        
+            <div class="nav-title">
+                <h1>Türkiye Adaletsizlik Haritası</h1>
+            </div>
+            <div class="nav-theme">
+                <button id="theme-toggle-btn" class="theme-toggle-btn" aria-label="Dark mode geçişi">
+                    <span class="sun-icon">☀️</span>
+                    <span class="moon-icon">🌙</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
         <main class="main-content">
             <div class="map-container">
                 <!-- Tab bar -->
                 <div class="tab-bar">
-                    <button class="tab-button active" data-tab="party">Parti Haritası</button>
-                    <button class="tab-button" data-tab="status">Adaletsizlik Haritası</button>
+                    <button class="tab-button active" data-tab="party">Partiler</button>
+                    <button class="tab-button" data-tab="status">Adaletsizlik</button>
                 </div>
                 
                 <svg id="turkey-map" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid meet">

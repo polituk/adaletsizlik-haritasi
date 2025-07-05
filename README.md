@@ -36,7 +36,7 @@ Bu web uygulaması, Türkiye'deki 81 ilin belediye başkanlarının durumunu ve 
 
 ## Veri Kaynağı
 
-Harita verisi [sozcu.com.tr](https://secim.sozcu.com.tr/secim2024mart31) sitesinden alınmıştır. Belediye başkanı durumları ve parti bilgileri güncel olarak takip edilmektedir.
+Harita SVG'si [sozcu.com.tr](https://secim.sozcu.com.tr/secim2024mart31) sitesinden alınmıştır. Belediye başkanı durumları ve parti bilgileri güncel olarak takip edilmektedir.
 
 ## Amaç
 
