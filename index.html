@@ -15,42 +15,19 @@
         
         <main class="main-content">
             <div class="map-container">
+                <!-- Tab bar -->
+                <div class="tab-bar">
+                    <button class="tab-button active" data-tab="party">Parti Haritası</button>
+                    <button class="tab-button" data-tab="status">Adaletsizlik Haritası</button>
+                </div>
+                
                 <svg id="turkey-map" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid meet">
                     <!-- Turkey provinces will be loaded here -->
                 </svg>
-                <div class="legend">
-                    <h3>Parti Renkleri</h3>
-                    <div class="legend-item">
-                        <div class="color-box akp"></div>
-                        <span>AKP</span>
-                    </div>
-                    <div class="legend-item">
-                        <div class="color-box chp"></div>
-                        <span>CHP</span>
-                    </div>
-                    <div class="legend-item">
-                        <div class="color-box mhp"></div>
-                        <span>MHP</span>
-                    </div>
-                    <div class="legend-item">
-                        <div class="color-box iyi-parti"></div>
-                        <span>İYİ Parti</span>
-                    </div>
-                    <div class="legend-item">
-                        <div class="color-box dem"></div>
-                        <span>DEM Parti</span>
-                    </div>
-                    <div class="legend-item">
-                        <div class="color-box yrp"></div>
-                        <span>YRP</span>
-                    </div>
-                    <div class="legend-item">
-                        <div class="color-box bbp"></div>
-                        <span>BBP</span>
-                    </div>
-                    <div class="legend-item">
-                        <div class="color-box independent"></div>
-                        <span>Bağımsız</span>
+                <div class="legend" id="legend">
+                    <h3 id="legend-title">Parti Renkleri</h3>
+                    <div class="legend-items" id="legend-items">
+                        <!-- Legend content will be dynamically generated -->
                     </div>
                 </div>
             </div>
