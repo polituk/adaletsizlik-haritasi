@@ -53,7 +53,7 @@ const provincesData = {
         name: "Antalya",
         party: "chp",
         mayor: "Muhittin Böcek",
-        status: "detained",
+        status: "arrested",
         population: 2722103,
         description: ""
     },

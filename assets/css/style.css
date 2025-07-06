@@ -365,20 +365,39 @@ body {
     .nav-container {
         flex-direction: column;
         gap: 15px;
-        text-align: center;
-        padding: 15px 10px;
+        padding: 15px 20px;
+        position: relative;
     }
     
+    /* Create a row for logo and theme toggle */
+    .nav-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+    
+    /* Position logo on the left */
     .nav-logo {
-        justify-content: center;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    
+    /* Position theme toggle on the right */
+    .nav-theme {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+    
+    /* Center the title below */
+    .nav-title {
+        text-align: center;
     }
     
     .nav-title h1 {
         font-size: 1.5rem;
-    }
-    
-    .nav-theme {
-        justify-content: center;
+        margin: 0;
     }
     
     .main-content {
