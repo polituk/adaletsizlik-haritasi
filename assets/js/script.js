@@ -7,6 +7,113 @@ document.addEventListener('DOMContentLoaded', function() {
     const legendItems = document.getElementById('legend-items');
     let selectedProvince = null;
     let currentMode = 'party'; // 'party' or 'status'
+    let tooltip = null; // Tooltip element
+    let tooltipTimeout = null; // For debouncing tooltip hide
+
+    // Create tooltip element
+    function createTooltip() {
+        tooltip = document.createElement('div');
+        tooltip.className = 'province-tooltip';
+        tooltip.style.cssText = `
+            position: fixed;
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            font-size: 0.85em;
+            max-width: 250px;
+            z-index: 10000;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.15s ease;
+            display: none;
+            will-change: transform, opacity;
+            transform: translateZ(0);
+        `;
+        document.body.appendChild(tooltip);
+    }
+
+    // Show tooltip with province data
+    function showTooltip(provinceId, event) {
+        // Clear any pending hide timeout
+        if (tooltipTimeout) {
+            clearTimeout(tooltipTimeout);
+            tooltipTimeout = null;
+        }
+        
+        const data = provincesData[provinceId];
+        if (!data || !tooltip) return;
+
+        const party = partyInfo[data.party];
+        const status = statusInfo[data.status];
+
+        tooltip.innerHTML = `
+            <div style="font-weight: bold; font-size: 1em; margin-bottom: 8px; color: var(--text-color);">${data.name}</div>
+            <div style="margin-bottom: 6px;">
+                <strong>Nüfus:</strong> ${formatNumber(data.population)}
+            </div>
+            <div style="margin-bottom: 6px;">
+                <strong>Başkan:</strong> ${data.mayor}
+            </div>
+            <div style="margin-bottom: 8px;">
+                <span class="status-badge" style="background-color: ${party.color}; color: white; font-size: 0.8em; padding: 2px 6px; border-radius: 4px; margin-right: 4px;">${party.name}</span>
+                <span class="status-badge status-${data.status.replace(/\s+/g, '-').replace(/[^a-zA-Z0-9-]/g, '')}" style="font-size: 0.8em; padding: 2px 6px; border-radius: 4px;">${status.name}</span>
+            </div>
+        `;
+
+        // Position tooltip more efficiently
+        let left = event.clientX + 15;
+        let top = event.clientY - 10;
+
+        // Simple boundary checks without getBoundingClientRect
+        const tooltipWidth = 250; // max-width from CSS
+        const tooltipHeight = 120; // estimated height
+        
+        if (left + tooltipWidth > window.innerWidth - 20) {
+            left = event.clientX - tooltipWidth - 15;
+        }
+        if (top < 20) {
+            top = event.clientY + 15;
+        }
+        if (top + tooltipHeight > window.innerHeight - 20) {
+            top = event.clientY - tooltipHeight - 15;
+        }
+
+        tooltip.style.left = left + 'px';
+        tooltip.style.top = top + 'px';
+        
+        // Show tooltip without forcing reflow
+        if (tooltip.style.display === 'none') {
+            tooltip.style.display = 'block';
+            // Use requestAnimationFrame to show opacity after display change
+            requestAnimationFrame(() => {
+                tooltip.style.opacity = '1';
+            });
+        } else {
+            tooltip.style.opacity = '1';
+        }
+    }
+
+    // Hide tooltip
+    function hideTooltip() {
+        // Clear any existing timeout
+        if (tooltipTimeout) {
+            clearTimeout(tooltipTimeout);
+        }
+        
+        // Add a small delay to prevent flickering when moving between provinces
+        tooltipTimeout = setTimeout(() => {
+            if (tooltip) {
+                tooltip.style.opacity = '0';
+                setTimeout(() => {
+                    if (tooltip.style.opacity === '0') { // Only hide if still supposed to be hidden
+                        tooltip.style.display = 'none';
+                    }
+                }, 200);
+            }
+        }, 50); // Small delay to prevent flickering
+    }
 
     // Create SVG map from real Turkey map data
     function createMap() {
@@ -31,15 +138,24 @@ document.addEventListener('DOMContentLoaded', function() {
                     shapeElement.addEventListener('click', () => selectProvince(provinceId));
                     
                     // Add hover effect
-                    shapeElement.addEventListener('mouseenter', function() {
+                    shapeElement.addEventListener('mouseenter', function(event) {
                         this.style.strokeWidth = '2';
                         this.style.opacity = '0.8';
+                        showTooltip(provinceId, event); // Show tooltip on hover
                     });
                     
                     shapeElement.addEventListener('mouseleave', function() {
                         if (!this.classList.contains('selected')) {
                             this.style.strokeWidth = '1';
                             this.style.opacity = '1';
+                        }
+                        hideTooltip(); // Hide tooltip when not hovering
+                    });
+                    
+                    // Add mousemove for tooltip positioning
+                    shapeElement.addEventListener('mousemove', function(event) {
+                        if (tooltip && tooltip.style.display === 'block') {
+                            showTooltip(provinceId, event);
                         }
                     });
                 }
@@ -78,6 +194,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Reset selection and show default view
     function resetSelection() {
+        // Hide tooltip
+        hideTooltip();
+        
         // Remove previous selection
         if (selectedProvince) {
             const prevElement = map.querySelector(`[data-province="${selectedProvince}"]`);
@@ -174,6 +293,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Select and display province details
     function selectProvince(provinceId) {
+        // Hide tooltip when selecting
+        hideTooltip();
+        
         // Remove previous selection
         if (selectedProvince) {
             const prevElement = map.querySelector(`[data-province="${selectedProvince}"]`);
@@ -353,6 +475,7 @@ document.addEventListener('DOMContentLoaded', function() {
         createMap();
         updateLegend();
         applyStatusBadgeColors();
+        createTooltip(); // Create tooltip element
         
         // Fix text elements blocking clicks on provinces
         fixTextElementsPointerEvents();
@@ -374,10 +497,32 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Fix SVG text elements to not block mouse events
     function fixTextElementsPointerEvents() {
-        const textElements = map.querySelectorAll('text');
+        const textElements = map.querySelectorAll('text, tspan');
         textElements.forEach(textElement => {
             textElement.style.pointerEvents = 'none';
+            textElement.style.userSelect = 'none';
+            textElement.style.webkitUserSelect = 'none';
+            textElement.style.msUserSelect = 'none';
         });
+        
+        // Also ensure any dynamically added text elements are handled
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                mutation.addedNodes.forEach((node) => {
+                    if (node.nodeType === Node.ELEMENT_NODE) {
+                        const newTextElements = node.querySelectorAll ? node.querySelectorAll('text, tspan') : [];
+                        newTextElements.forEach(textElement => {
+                            textElement.style.pointerEvents = 'none';
+                            textElement.style.userSelect = 'none';
+                            textElement.style.webkitUserSelect = 'none';
+                            textElement.style.msUserSelect = 'none';
+                        });
+                    }
+                });
+            });
+        });
+        
+        observer.observe(map, { childList: true, subtree: true });
     }
 
     // Utility function to get current theme colors
@@ -493,10 +638,50 @@ document.addEventListener('DOMContentLoaded', function() {
             filter: brightness(1.2);
         }
         
-        /* Prevent SVG text elements from blocking mouse events */
-        #turkey-map text {
-            pointer-events: none;
-            user-select: none;
+        /* Prevent SVG text elements from blocking mouse events and causing layout shifts */
+        #turkey-map text,
+        #turkey-map tspan {
+            pointer-events: none !important;
+            user-select: none !important;
+            -webkit-user-select: none !important;
+            -ms-user-select: none !important;
+            transform: translateZ(0);
+            will-change: auto;
+        }
+        
+        /* Ensure SVG elements don't cause reflows */
+        #turkey-map svg {
+            transform: translateZ(0);
+            will-change: auto;
+        }
+        
+        /* Tooltip styling with hardware acceleration */
+        .province-tooltip {
+            font-family: inherit;
+            line-height: 1.4;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+        
+        .province-tooltip .status-badge {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            font-weight: 500;
+        }
+        
+        /* Dark mode tooltip adjustments */
+        [data-theme="dark"] .province-tooltip {
+            background: var(--bg-color);
+            border-color: var(--border-color);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Prevent any potential layout shifts */
+        .province {
+            transform: translateZ(0);
+            will-change: auto;
         }
     `;
     document.head.appendChild(style);

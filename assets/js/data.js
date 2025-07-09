@@ -668,6 +668,6 @@ const statusInfo = {
     "normal": { name: "Görevde", description: "Belediye başkanı görevde", color: "#95a5a6", details: "belediye başkanı görevde."},
     "arrested": { name: "Tutuklu", description: "Belediye başkanı tutuklu durumda", color: "#ed0b03", details: "belediye başkanı tutuklu." },
     "trustee": { name: "Kayyum", description: "Belediyeye kayyum atanmış", color: "#fa9023", details: "belediyesine kayyum atanmış." },
-    "judicial control": { name: "Adlî kontrol", description: "Belediye başkanı adli kontrolde", color: "#db6848", details: "belediye başkanı adli kontrolde." },
+    "judicial control": { name: "Adlî kontrol", description: "Belediye başkanı adli kontrolde", color: "#db6848", details: "belediye başkanı adlî kontrol şartıyla serbest." },
     "detained": { name: "Gözaltında", description: "Belediye başkanı gözaltında", color: "#fed400", details: "belediye başkanı gözaltında." },
 };
