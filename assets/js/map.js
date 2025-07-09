@@ -35,7 +35,11 @@ window.MapManager = {
                     shapeElement.setAttribute('data-province', provinceId);
                     
                     // Add click event
-                    shapeElement.addEventListener('click', () => this.selectProvince(provinceId));
+                    shapeElement.addEventListener('click', (event) => {
+                        this.selectProvince(provinceId);
+                        // Show locked tooltip on click
+                        Tooltip.show(provinceId, event, true);
+                    });
                     
                     // Add hover effect
                     shapeElement.addEventListener('mouseenter', function(event) {
@@ -49,13 +53,18 @@ window.MapManager = {
                             this.style.strokeWidth = '1';
                             this.style.opacity = '1';
                         }
-                        Tooltip.hide(); // Hide tooltip when not hovering
+                        // Only hide tooltip if not locked
+                        if (!Tooltip.isLocked) {
+                            Tooltip.hide();
+                        }
                     });
                     
                     // Add mousemove for tooltip positioning
                     shapeElement.addEventListener('mousemove', function(event) {
-                        if (Tooltip.element && Tooltip.element.style.display === 'block') {
-                            Tooltip.show(provinceId, event);
+                        // Update tooltip position if it's visible and either not locked or locked to this province
+                        if (Tooltip.element && Tooltip.element.style.display === 'block' && 
+                            (!Tooltip.isLocked || Tooltip.lockedProvinceId === provinceId)) {
+                            Tooltip.show(provinceId, event, Tooltip.isLocked);
                         }
                     });
                 }
@@ -94,8 +103,8 @@ window.MapManager = {
 
     // Reset selection and show default view
     resetSelection() {
-        // Hide tooltip
-        Tooltip.hide();
+        // Force hide and unlock tooltip
+        Tooltip.forceHide();
         
         // Remove previous selection
         if (this.selectedProvince) {
@@ -193,8 +202,8 @@ window.MapManager = {
 
     // Select and display province details
     selectProvince(provinceId) {
-        // Hide tooltip when selecting
-        Tooltip.hide();
+        // Force hide any existing locked tooltip
+        Tooltip.forceHide();
         
         // Remove previous selection
         if (this.selectedProvince) {
