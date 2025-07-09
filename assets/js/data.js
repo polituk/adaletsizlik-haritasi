@@ -5,7 +5,7 @@ const provincesData = {
         name: "Adana",
         party: "chp",
         mayor: "Zeydan Karalar",
-        status: "detained",
+        status: "arrested",
         population: 2270298,
         description: ""
     },
@@ -13,9 +13,9 @@ const provincesData = {
         name: "Adıyaman",
         party: "chp",
         mayor: "Abdurrahman Tutdere",
-        status: "detained",
+        status: "judicial control",
         population: 611037,
-        description: ""
+        description: "Gözaltının ardından ev hapsi şeklinde adli kontrol şartıyla serbest bırakıldı."
     },
     "3": { // Afyonkarahisar
         name: "Afyonkarahisar",
@@ -668,5 +668,6 @@ const statusInfo = {
     "normal": { name: "Görevde", description: "Belediye başkanı görevde", color: "#95a5a6", details: "belediye başkanı görevde."},
     "arrested": { name: "Tutuklu", description: "Belediye başkanı tutuklu durumda", color: "#ed0b03", details: "belediye başkanı tutuklu." },
     "trustee": { name: "Kayyum", description: "Belediyeye kayyum atanmış", color: "#fa9023", details: "belediyesine kayyum atanmış." },
+    "judicial control": { name: "Adlî kontrol", description: "Belediye başkanı adli kontrolde", color: "#db6848", details: "belediye başkanı adli kontrolde." },
     "detained": { name: "Gözaltında", description: "Belediye başkanı gözaltında", color: "#fed400", details: "belediye başkanı gözaltında." },
 };

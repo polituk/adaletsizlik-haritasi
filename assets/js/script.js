@@ -213,12 +213,14 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="party-info">
                 <h3>Belediye Başkanı</h3>
                 <p><strong>İsim:</strong> ${data.mayor}</p>
-                <p><strong>Parti:</strong> ${party.fullname} (${party.name})</p>
-                <div class="color-box" style="display: inline-block; margin-right: 10px; background-color: ${party.color};"></div>
+                <p><strong>Parti:</strong> ${party.fullname}</p>
             </div>
             
             <h3>Durum</h3>
-            <span class="status-badge status-${data.status}">${status.name}</span>
+            <div style="margin-bottom: 10px;">
+                <span class="status-badge status-${data.status.replace(/\s+/g, '-').replace(/[^a-zA-Z0-9-]/g, '')}">${status.name}</span>
+                <span class="status-badge" style="background-color: ${party.color}; color: white; margin-left: 8px;">${party.name}</span>
+            </div>
             <p>${status.description}</p>
         `;
 
@@ -236,17 +238,24 @@ document.addEventListener('DOMContentLoaded', function() {
     // Calculate and display population statistics by status
     function calculatePopulationStats() {
         let totalPopulation = 0;
-        const statusPopulation = {
-            normal: 0,
-            detained: 0,
-            arrested: 0,
-            trustee: 0
-        };
+        const statusPopulation = {};
+        
+        // Initialize statusPopulation with all possible status types from statusInfo
+        Object.keys(statusInfo).forEach(statusKey => {
+            statusPopulation[statusKey] = 0;
+        });
 
         // Calculate totals
         Object.values(provincesData).forEach(province => {
             totalPopulation += province.population;
-            statusPopulation[province.status] += province.population;
+            if (statusPopulation.hasOwnProperty(province.status)) {
+                statusPopulation[province.status] += province.population;
+            } else {
+                // Handle any status not defined in statusInfo
+                console.warn(`Unknown status: ${province.status} for province ${province.name}`);
+                statusPopulation[province.status] = statusPopulation[province.status] || 0;
+                statusPopulation[province.status] += province.population;
+            }
         });
 
         // Calculate percentages
@@ -265,10 +274,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Helper function to generate status card HTML
     function generateStatusCard(statusKey, statusData, percentage, population) {
+        // Handle status keys with spaces or special characters by escaping them for CSS class names
+        const escapedStatusKey = statusKey.replace(/\s+/g, '-').replace(/[^a-zA-Z0-9-]/g, '');
+        
         return `
             <div style="margin: 15px 0; padding: 10px; background: var(--legend-bg); border-radius: 8px;">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                    <span class="status-badge status-${statusKey}" style="margin-right: 8px;">${statusData.name}</span>
+                    <span class="status-badge status-${escapedStatusKey}" style="margin-right: 8px;">${statusData.name}</span>
                     <strong>${percentage}%</strong>
                 </div>
                 <div style="width: 100%; background-color: var(--border-color); border-radius: 4px; height: 6px; margin-bottom: 8px; overflow: hidden;">
@@ -322,8 +334,10 @@ document.addEventListener('DOMContentLoaded', function() {
         
         Object.keys(statusInfo).forEach(statusKey => {
             const statusColor = statusInfo[statusKey].color;
+            // Handle status keys with spaces or special characters by escaping them
+            const escapedStatusKey = statusKey.replace(/\s+/g, '-').replace(/[^a-zA-Z0-9-]/g, '');
             statusCSS += `
-                .status-badge.status-${statusKey} {
+                .status-badge.status-${escapedStatusKey} {
                     background-color: ${statusColor} !important;
                     color: white !important;
                 }
