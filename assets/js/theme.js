@@ -50,6 +50,9 @@ window.Theme = {
         const savedTheme = localStorage.getItem('theme') || 'light';
         body.setAttribute('data-theme', savedTheme);
         
+        // Update map and logo for the restored theme
+        Theme.updateMapForTheme(savedTheme);
+        
         // Theme toggle event listener
         themeToggleBtn.addEventListener('click', function() {
             const currentTheme = body.getAttribute('data-theme');
