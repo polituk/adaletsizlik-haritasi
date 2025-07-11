@@ -459,6 +459,13 @@ body {
     border-color: #e6683c;
 }
 
+.social-link:nth-child(4):hover {
+    /* TikTok - similar to Twitter/X */
+    background-color: #000;
+    color: white;
+    border-color: #000;
+}
+
 /* Dark mode adjustments for social links */
 [data-theme="dark"] .social-link:nth-child(1):hover {
     background-color: #f5f5f5;
