@@ -1,0 +1,26 @@
+{
+    "name": "Türkiye Adaletsizlik Haritası",
+    "short_name": "Adaletsizlik Haritası",
+    "description": "Türkiye'deki belediye başkanlarının gözaltı, tutuklu, ev hapsi ve kayyum durumlarını gösteren interaktif adaletsizlik haritası",
+    "lang": "tr",
+    "start_url": "/",
+    "display": "standalone",
+    "theme_color": "#d0a83a",
+    "background_color": "#f5f5f5",
+    "orientation": "any",
+    "scope": "/",
+    "icons": [
+        {
+            "src": "assets/images/favicon-16x16.png",
+            "sizes": "16x16",
+            "type": "image/png"
+        },
+        {
+            "src": "assets/images/favicon-32x32.png",
+            "sizes": "32x32",
+            "type": "image/png"
+        }
+    ],
+    "categories": ["government", "politics", "education"],
+    "keywords": "polituk, adaletsizlik haritası, itü harita, gözaltı, ev hapsi, tutuklu, kayyum, belediye başkanı gözaltında"
+}

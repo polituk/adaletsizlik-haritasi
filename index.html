@@ -3,10 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Türkiye Adaletsizlik Haritası</title>
+    
+    <!-- SEO Meta Tags -->
+    <title>Türkiye Adaletsizlik Haritası - Polituk İTÜ Belediye Başkanları Gözaltı Durumu</title>
+    <meta name="description" content="Türkiye'deki belediye başkanlarının gözaltı, tutuklu, ev hapsi ve kayyum durumlarını gösteren interaktif adaletsizlik haritası. Polituk tarafından hazırlanmıştır.">
+    <meta name="keywords" content="polituk, adaletsizlik haritası, itü harita, gözaltı, ev hapsi, tutuklu, kayyum, belediye başkanı gözaltında, türkiye belediye haritası, belediye başkanı tutuklu, belediye başkanı kayyum, politik harita">
+    <meta name="author" content="Polituk">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Block AI training crawlers -->
+    <meta name="robots" content="noai, noimageai">
+    <meta name="google-site-verification" content="">
+    
+    <meta name="language" content="Turkish">
+    <meta name="geo.region" content="TR">
+    <meta name="geo.country" content="Turkey">
+    
+    <!-- Open Graph Tags for Social Media -->
+    <meta property="og:title" content="Türkiye Adaletsizlik Haritası - Belediye Başkanları Gözaltı Durumu">
+    <meta property="og:description" content="Türkiye'deki belediye başkanlarının gözaltı, tutuklu, ev hapsi ve kayyum durumlarını gösteren interaktif adaletsizlik haritası.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.polituk.com">
+    <meta property="og:image" content="https://www.polituk.com/assets/images/logo_light.png">
+    <meta property="og:image:alt" content="Türkiye Adaletsizlik Haritası Logo">
+    <meta property="og:site_name" content="Polituk | Adaletsizlik Haritası">
+    <meta property="og:locale" content="tr_TR">
+    
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@polituk">
+    <meta name="twitter:creator" content="@polituk">
+    <meta name="twitter:title" content="Türkiye Adaletsizlik Haritası - Belediye Başkanları Gözaltı Durumu">
+    <meta name="twitter:description" content="Türkiye'deki belediye başkanlarının gözaltı, tutuklu, ev hapsi ve kayyum durumlarını gösteren interaktif adaletsizlik haritası.">
+    <meta name="twitter:image" content="https://www.polituk.com/assets/images/logo_light.png">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.polituk.com">
+
+    <!-- Favicons -->
     <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
+    <link rel="apple-touch-icon" href="assets/images/favicon-32x32.png">
+    
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="assets/css/style.css" as="style">
+    <link rel="preload" href="assets/js/main.js" as="script">
+    
+    <!-- Stylesheet -->
     <link rel="stylesheet" href="assets/css/style.css">
+    
+    <!-- Structured Data for Search Engines -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Türkiye Adaletsizlik Haritası",
+      "description": "Türkiye'deki belediye başkanlarının gözaltı, tutuklu, ev hapsi ve kayyum durumlarını gösteren interaktif adaletsizlik haritası",
+      "url": "https://polituk.github.io/adaletsizlik-haritasi/",
+      "author": {
+        "@type": "Organization",
+        "name": "Polituk",
+        "url": "https://github.com/polituk",
+        "sameAs": [
+          "https://x.com/polituk",
+          "https://www.instagram.com/polituk",
+          "https://www.tiktok.com/@polituk_"
+        ]
+      },
+      "applicationCategory": "Political Tool",
+      "operatingSystem": "Web Browser",
+      "inLanguage": "tr",
+      "keywords": "polituk, adaletsizlik haritası, itü harita, gözaltı, ev hapsi, tutuklu, kayyum, belediye başkanı gözaltında",
+      "about": {
+        "@type": "Thing",
+        "name": "Türkiye Belediye Başkanları Adaletsizlik Durumu",
+        "description": "Türkiye'deki belediye başkanlarının hukuki durumları ve adaletsizlik örnekleri"
+      }
+    }
+    </script>
 </head>
 <body>
     <!-- Navigation Bar -->
@@ -25,42 +102,50 @@
             </div>
             <div class="nav-title">
                 <h1>Türkiye Adaletsizlik Haritası</h1>
+                <meta name="description" content="Belediye başkanları gözaltı, tutuklu, ev hapsi ve kayyum durumları">
             </div>
         </div>
     </nav>
 
     <div class="container">
-        <main class="main-content">
-            <div class="map-container">
+        <main class="main-content" role="main">
+            <section class="map-container" aria-label="İnteraktif Türkiye Adaletsizlik Haritası">
+                <header class="map-header">
+                    <h2 class="visually-hidden">Belediye Başkanları Hukuki Durum Haritası</h2>
+                    <p class="visually-hidden">Bu harita Türkiye'deki belediye başkanlarının gözaltı, tutuklu, ev hapsi ve kayyum durumlarını göstermektedir.</p>
+                </header>
                 <!-- Tab bar -->
-                <div class="tab-bar">
-                    <button class="tab-button active" data-tab="party">Partiler</button>
-                    <button class="tab-button" data-tab="status">Adaletsizlik</button>
+                <div class="tab-bar" role="tablist" aria-label="Harita görünüm seçenekleri">
+                    <button class="tab-button active" data-tab="party" role="tab" aria-selected="true" aria-controls="party-view">Partiler</button>
+                    <button class="tab-button" data-tab="status" role="tab" aria-selected="false" aria-controls="status-view">Adaletsizlik</button>
                 </div>
                 
-                <svg id="turkey-map" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid meet">
+                <svg id="turkey-map" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid meet" 
+                     role="img" aria-label="Türkiye haritası - belediye başkanları adaletsizlik durumu">
+                    <title>Türkiye Adaletsizlik Haritası - Belediye Başkanları Hukuki Durumu</title>
+                    <desc>Bu harita Türkiye'nin 81 ilindeki belediye başkanlarının gözaltı, tutuklu, ev hapsi ve kayyum durumlarını renklerle göstermektedir.</desc>
                     <!-- Turkey provinces will be loaded here -->
                 </svg>
-                <div class="legend" id="legend">
+                <aside class="legend" id="legend" role="complementary" aria-label="Harita lejantı">
                     <h3 id="legend-title">Parti Renkleri</h3>
-                    <div class="legend-items" id="legend-items">
+                    <div class="legend-items" id="legend-items" role="list">
                         <!-- Legend content will be dynamically generated -->
                     </div>
-                </div>
-            </div>
+                </aside>
+            </section>
             
-            <div class="details-panel">
+            <aside class="details-panel" role="complementary" aria-label="İl detayları">
                 <div id="province-details">
                     <h2>İl Seçiniz</h2>
-                    <p>Haritadan bir il seçerek detayları görüntüleyebilirsiniz.</p>
+                    <p>Haritadan bir il seçerek belediye başkanının hukuki durumu ve detaylarını görüntüleyebilirsiniz.</p>
                 </div>
-            </div>
+            </aside>
             
-            <div class="stats-panel">
+            <aside class="stats-panel" role="complementary" aria-label="İstatistikler">
                 <div id="population-stats">
                     <!-- Population statistics will be loaded here -->
                 </div>
-            </div>
+            </aside>
         </main>
     </div>
     
